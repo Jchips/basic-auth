@@ -12,7 +12,7 @@ Deploy an Express server that implements Basic Authentication, with signup and s
 
 - [GitHub Actions ci/cd](https://github.com/Jchips/basic-auth/actions)
 <!-- - [back-end server url](https://api-server-dev-u3w5.onrender.com) -->
-<!-- - [Pull Request](https://github.com/Jchips/api-server/pull/3) -->
+- [Pull Request](https://github.com/Jchips/basic-auth/pull/1)
 
 ### Setup
 
@@ -33,7 +33,7 @@ Deploy an Express server that implements Basic Authentication, with signup and s
 
 - Pull request
 
-    <https://github.com/Jchips/api-server/pull/3>
+    <https://github.com/Jchips/basic-auth/pull/1>
 
 - POST : `/signup` - Sign up a user
 - POST : `/signin` - Sign in with a user that already signed in
