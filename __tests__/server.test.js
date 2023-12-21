@@ -8,7 +8,7 @@ const request = supertest(app);
 // Turn database on for test
 beforeAll(async () => {
   await sequelize.sync();
-  console.log('sequelize in server.test', sequelize); // delete later
+  // console.log('sequelize in server.test', sequelize); // delete later
 });
 
 // Turn database off for test
