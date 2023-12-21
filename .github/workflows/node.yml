@@ -21,6 +21,7 @@ jobs:
       run: |
         npm i
         npm run build --if-present
+        echo "DATABASE_URL: $DATABASE_URL"
         npm test
       env:
         CI: true
