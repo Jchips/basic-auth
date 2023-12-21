@@ -10,6 +10,7 @@ let user = { username: 'dog', password: 'password123' };
 // Turn database on for test
 beforeAll(async () => {
   await sequelize.sync();
+  console.log(user);
   await Users.create(user);
 });
 

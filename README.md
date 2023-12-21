@@ -11,7 +11,6 @@ Deploy an Express server that implements Basic Authentication, with signup and s
 ### Links and Resources
 
 - [GitHub Actions ci/cd](https://github.com/Jchips/basic-auth/actions)
-<!-- [back-end server url](https://api-server-dev-u3w5.onrender.com) -->
 - [Pull Request](https://github.com/Jchips/basic-auth/pull/1)
 
 ### Setup
