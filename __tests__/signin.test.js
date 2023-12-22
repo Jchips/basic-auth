@@ -18,7 +18,7 @@ beforeAll(async () => {
 // Turn database off for test
 afterAll(async () => {
   await sequelize.drop();
-  console.log('signin dropped');
+  await console.log('signin dropped');
 });
 
 describe('signin middleware', () => {
