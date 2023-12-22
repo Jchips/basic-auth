@@ -10,13 +10,15 @@ let user = { username: 'dog', password: 'password123' };
 // Turn database on for test
 beforeAll(async () => {
   await sequelize.sync();
-  console.log(user);
+  console.log('signin synced');
+  console.log('Users:', Users); // delete later
   await Users.create(user);
 });
 
 // Turn database off for test
 afterAll(async () => {
   await sequelize.drop();
+  console.log('signin dropped');
 });
 
 describe('signin middleware', () => {
