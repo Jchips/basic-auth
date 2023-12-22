@@ -9,7 +9,7 @@ let user = { username: 'dog', password: 'password123' };
 
 // Turn database on for test
 beforeAll(async () => {
-  await sequelize.sync({force: true});
+  await sequelize.sync();
   await console.log('signin synced');
   // console.log('Users:', Users); // delete later
   await Users.create(user);
