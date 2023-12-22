@@ -8,7 +8,6 @@ const { sequelize } = require('./src/auth/models/userModel');
 sequelize.sync()
   .then(() => {
     start();
-    return sequelize.drop();
   }).catch(e => {
     console.error('Could not start server', e.message);
   });
