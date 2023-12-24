@@ -10,13 +10,14 @@ beforeAll(async () => {
   // await sequelize.drop();
   await sequelize.sync();
   await console.log('server synced');
-  // console.log('sequelize in server.test', sequelize); // delete later
+  return Promise.resolve();
 });
 
 // Turn database off for test
 afterAll(async () => {
   await sequelize.drop();
   await console.log('server dropped');
+  return Promise.resolve();
 });
 
 describe('Basic Auth', () => {
