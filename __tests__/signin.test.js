@@ -24,7 +24,11 @@ afterAll(async () => {
 
 describe('signin middleware', () => {
   const req = {};
-  const res = {};
+  const res = {
+    status: jest.fn(() => res),
+    send: jest.fn(() => res),
+    json: jest.fn(() => res),
+  };
   const next = jest.fn();
 
   it('user signs in as expected', () => {
