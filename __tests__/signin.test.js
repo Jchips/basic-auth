@@ -9,26 +9,20 @@ let user = { username: 'dog', password: 'password123' };
 
 // Turn database on for test
 beforeAll(async () => {
-  await sequelize.sync();
+  await sequelize.sync({force: true});
   await console.log('signin synced');
-  await Users.create(user);
-  return Promise.resolve();
+  return Users.create(user);
 });
 
 // Turn database off for test
 afterAll(async () => {
-  await sequelize.drop();
-  await console.log('signin dropped');
-  return Promise.resolve();
+  console.log('signin dropped');
+  return await sequelize.drop();
 });
 
 describe('signin middleware', () => {
   const req = {};
-  const res = {
-    status: jest.fn(() => res),
-    send: jest.fn(() => res),
-    json: jest.fn(() => res),
-  };
+  const res = {};
   const next = jest.fn();
 
   it('user signs in as expected', () => {
