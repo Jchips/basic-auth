@@ -11,7 +11,7 @@ let user = { username: 'dog', password: 'password123' };
 beforeAll(async () => {
   await sequelize.sync({force: true});
   await console.log('signin synced');
-  return Users.create(user);
+  return await Users.create(user);
 });
 
 // Turn database off for test
