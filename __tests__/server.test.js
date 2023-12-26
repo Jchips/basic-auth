@@ -7,16 +7,14 @@ const request = supertest(app);
 
 // Turn database on for test
 beforeAll(async () => {
-  await sequelize.drop();
-  await sequelize.sync({force: true});
   console.log('server synced');
-  // console.log('sequelize in server.test', sequelize); // delete later
+  return await sequelize.sync({force: true});
 });
 
 // Turn database off for test
 afterAll(async () => {
-  await sequelize.drop();
   console.log('server dropped');
+  return await sequelize.drop();
 });
 
 describe('Basic Auth', () => {
