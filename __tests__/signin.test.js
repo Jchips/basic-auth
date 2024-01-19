@@ -1,50 +1,38 @@
 'use strict';
 
+const signin = require('../src/auth/signin');
 const base64 = require('base-64');
-const middleware = require('../src/auth/signin');
 const { sequelize, Users } = require('../src/auth/models/userModel');
 
-let userInfo = {
-  admin: { username: 'admin-basic', password: 'password' },
-};
+let user = { username: 'dog', password: 'password123' };
 
-// Pre-load our database with fake users
+// Turn database on for test
 beforeAll(async () => {
   await sequelize.sync();
-  await Users.create(userInfo.admin);
+  console.log('signin synced');
+  await Users.create(user);
 });
+
+// Turn database off for test
 afterAll(async () => {
   await sequelize.drop();
+  console.log('signin dropped');
 });
 
-describe('Auth Middleware', () => {
-
-  // admin:password: YWRtaW46cGFzc3dvcmQ=
-  // admin:foo: YWRtaW46Zm9v
-
-  // Mock the express req/res/next that we need for each middleware call
+describe('signin middleware', () => {
   const req = {};
-  const res = {
-    status: jest.fn(() => res),
-    send: jest.fn(() => res),
-  };
+  const res = {};
   const next = jest.fn();
 
-  describe('user authentication', () => {
+  it('user signs in as expected', () => {
+    const basicAuthString = base64.encode(`${user.username}:${user.password}`);
+    req.headers = {
+      authorization: `Basic ${basicAuthString}`,
+    };
 
-    it('logs in an admin user with the right credentials', () => {
-      let basicAuthString = base64.encode(`${userInfo.admin.username}:${userInfo.admin.password}`);
-
-      // Change the request to match this test case
-      req.headers = {
-        authorization: `Basic ${basicAuthString}`,
-      };
-
-      return middleware(req, res, next)
-        .then(() => {
-          expect(next).toHaveBeenCalledWith();
-        });
-
-    });
+    return signin(req, res, next)
+      .then(() => {
+        expect(next).toHaveBeenCalledWith();
+      });
   });
 });
