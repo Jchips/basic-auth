@@ -3,16 +3,14 @@
 const signin = require('../src/auth/signin');
 const base64 = require('base-64');
 const { sequelize, Users } = require('../src/auth/models/userModel');
-// const Users = require('../src/auth/models/userModel');
 
 let user = { username: 'dog', password: 'password123' };
 
 // Turn database on for test
 beforeAll(async () => {
-  await sequelize.sync({force: true});
-  await console.log('signin synced');
-  console.log('Users:', Users); // delete later
+  await sequelize.sync();
   await Users.create(user);
+  console.log('signin synced');
 });
 
 // Turn database off for test
